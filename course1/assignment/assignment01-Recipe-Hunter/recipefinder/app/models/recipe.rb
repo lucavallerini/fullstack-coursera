@@ -7,6 +7,6 @@ class Recipe
    format :json
 
    def self.for(searchterm) 
-      get(base_uri + "/search", { query: default_params.merge({q: searchterm}) })['recipescd ']
+      get(base_uri + "/search", { query: default_params.merge({q: searchterm}) })['recipes']
    end
 end
