@@ -34,12 +34,19 @@ for i in 1..20 do
    ]
 end
 
-for i in 1..4 do
+for i in 0..3 do
    todo_list = TodoList.create! [
-      {list_name: "List #{i}", list_due_date: Date.today + 1.year}
+      {list_name: "List #{i+1}", list_due_date: Date.today + 1.year}
    ]
-   TodoItem.all.limit(5).offset(4).each.to_a do |item| 
-      item.update(todo_list_id: todo_list.id)
+
+   TodoItem.all.offset(5*i).limit(5).each do |item|
+      item.update(todo_list_id: todo_list[0].id)
    end
 
+   User.all.offset(i).limit(1).each do |user|
+      todo_list[0].user_id = user.id
+      todo_list[0].save
+   end
 end
+
+
