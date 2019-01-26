@@ -2,22 +2,22 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @todo_list.todo_items[2].title %>
+  <%= @todo_item.title %>
 </p>
 
 <p>
   <strong>Due date:</strong>
-  <%= @todo_list.todo_items.due_date %>
+  <%= @todo_item.due_date %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @todo_list.todo_items.description %>
+  <%= @todo_item.description %>
 </p>
 
 <p>
   <strong>Completed:</strong>
-  <%= @todo_list.todo_items.completed %>
+  <%= @todo_item.completed %>
 </p>
 
 <%= link_to 'Edit', edit_todo_list_todo_item_path(@todo_list, @todo_item) %> |

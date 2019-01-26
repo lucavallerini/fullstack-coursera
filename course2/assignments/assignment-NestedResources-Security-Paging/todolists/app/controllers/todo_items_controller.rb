@@ -1,10 +1,10 @@
 class TodoItemsController < ApplicationController
-  before_action :set_todo_list, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_todo_list, only: [:new, :show, :create, :edit, :update, :destroy]
+  before_action :set_todo_item, only: [:show, :edit, :update, :destroy]
 
   # GET /todo_list/todo_items/1
   # GET /todo_list/todo_items/1.json
   def show
-    @todo_list.todo_items = set_todo_item
   end
 
   # GET /todo_list/todo_items/new
@@ -51,7 +51,7 @@ class TodoItemsController < ApplicationController
   def destroy
     @todo_item.destroy
     respond_to do |format|
-      format.html { redirect_to todo_list_url, notice: 'Todo item was successfully destroyed.' }
+      format.html { redirect_to @todo_list, notice: 'Todo item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -59,7 +59,7 @@ class TodoItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_item
-      @todo_list.todo_items.find(params[:id])
+      @todo_item = @todo_list.todo_items.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
