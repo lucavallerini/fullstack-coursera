@@ -1,29 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" charset="utf-8">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
+      .message-green { color: green; }
+      .message-red { color: red; }
+      .border-green { border-color: green; }
+      .border-red { border-color: red; }
     </style>
+    <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js" charset="utf-8"></script>
   </head>
-<body>
-   <div class="container">
+<body ng-app="LunchCheck">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
-
+        <h3 style="color: red;">NOTE: I dot NOT consider an empty item (e.g. ", ,") as an item towards to the count (check the optional assignment).</h3>
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control border-{{borderColor}}"
+             ng-model="lunchItems">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="displayMessage();">Check If Too Much</button>
          </div>
-         <div class="form-group message">
-           <!-- Your message can go here. -->
+         <div class="form-group message message-{{messageColor}}">
+           {{ message }}
          </div>
    </div>
-
 </body>
 </html>
